@@ -18,9 +18,17 @@ app.use(
     credentials: true, // Allow credentials (cookies, authorization headers)
   })
 );
-app.use(cookieParser());
 app.use(express.static(__dirname + "/public"));
+app.use(cookieParser());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/place", placeRouter);
 app.use("/api/v1/file", fileRouter);
