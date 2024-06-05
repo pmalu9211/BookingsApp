@@ -25,6 +25,7 @@ uploadBooking = async (req, res, next) => {
     console.log(document);
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -41,6 +42,7 @@ getBookings = async (req, res) => {
     console.log(document);
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -53,6 +55,7 @@ deleteBooking = async (req, res) => {
     if (!document) throw new CustomError("Unable to delete booking", 300);
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }

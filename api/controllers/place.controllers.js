@@ -56,6 +56,7 @@ const uploadPlace = async (req, res, next) => {
     res.status(200).json({ document });
   } catch (err) {
     console.log(err);
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -119,6 +120,7 @@ const updatePlace = async (req, res, next) => {
     console.log(document);
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -133,6 +135,7 @@ getUsersPlaces = async (req, res, next) => {
 
     res.status(200).json({ document });
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -147,6 +150,7 @@ const getPlaceById = async (req, res, next) => {
     console.log(document);
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
     console.log(err.message);
@@ -160,6 +164,7 @@ const deletePlace = async (req, res, next) => {
     if (!document) throw new CustomError("Unable to delete place", 300);
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -170,6 +175,7 @@ const getPlacesForHome = async (req, res, next) => {
     const document = await PlaceModule.find();
     res.status(200).json(document);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }

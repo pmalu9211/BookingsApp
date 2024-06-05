@@ -26,6 +26,7 @@ const uploadByLink = async (req, res, next) => {
     res.status(200).json({ hello: "nigga", url: uploadResult.url });
   } catch (err) {
     console.log(err);
+    console.log(req);
     console.log(err);
     next(err);
   }
@@ -49,6 +50,7 @@ const uploadFromDevice = async (req, res, next) => {
     console.log(urls);
     res.status(200).json(urls);
   } catch (err) {
+    console.log(req);
     console.log(err);
     next(err);
   }
