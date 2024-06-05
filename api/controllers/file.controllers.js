@@ -1,15 +1,7 @@
 const download = require("image-downloader");
 const fs = require("fs");
+const cloudinary = require("../middleware/cloudinary");
 require("dotenv").config();
-
-const { v2: cloudinary } = require("cloudinary");
-const CustomError = require("../util/errorHandler");
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDIARY_CLOUD_NAME,
-  api_key: process.env.CLOUDIARY_API_KEY,
-  api_secret: process.env.CLOUDIARY_API_SECRETE, // Click 'View Credentials' below to copy your API secret
-});
 
 const uploadByLink = async (req, res, next) => {
   try {

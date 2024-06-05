@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BookingDates from "../components/BookingDates";
 import ProfileNav from "../components/ProfileNav";
+import { UserContext } from "../context/userContext";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 export default function BookingsPage() {
+  const { loading, setLoading } = useContext(UserContext);
   const deleteBooking = async (e, val) => {
     e.preventDefault();
     let confirm = prompt('Type "DELETE" to confirm the action');
     if (confirm === "DELETE") {
+      setLoading(true);
       axios
         .post("booking/deleteBooking", { id: val })
         .then((data) => {
@@ -16,9 +20,12 @@ export default function BookingsPage() {
           setBookings((e) => {
             return e.filter((value) => value._id != data.data._id);
           });
+          setLoading(false);
           //console.log(data);
         })
         .catch((err) => {
+          setLoading(false);
+
           //console.log(err.message);
           alert(err.response.data.message);
         });
@@ -27,18 +34,23 @@ export default function BookingsPage() {
 
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
+    setLoading(true);
+
     axios
       .get("booking/bookings")
       .then((response) => {
         setBookings(response.data);
+        setLoading(false);
       })
       .catch((err) => {
+        setLoading(false);
         alert(err.response.data.message);
         //console.log(err);
       });
   }, []);
   return (
     <div>
+      {loading && <LoadingOverlay />}
       <ProfileNav />
       <div className="mt-6">
         {bookings?.length > 0 &&

@@ -6,17 +6,22 @@ import { UserContext } from "../context/userContext";
 
 export default function PlacesPage() {
   const { action } = useParams();
-  const { loading } = useContext(UserContext);
+  const { loading, setLoading } = useContext(UserContext);
   const [placesData, setPlacesData] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get("place/places")
       .then((data) => {
         //console.log(data);
+        setLoading(false);
+
         setPlacesData(data.data.document);
       })
       .catch((err) => {
+        setLoading(false);
+
         alert(err.response.data.message);
         //console.log(err.message);
       });
@@ -26,9 +31,13 @@ export default function PlacesPage() {
     let foo = prompt('Type "DELETE" to confirm the action');
     if (foo === "DELETE") {
       e.preventDefault();
+      setLoading(true);
+
       axios
         .post("place/deletePlace", { id: val })
         .then((data) => {
+          setLoading(false);
+
           alert("Place deleted successfully");
           setPlacesData((e) => {
             return e.filter((value) => value._id != data.data._id);
@@ -37,6 +46,8 @@ export default function PlacesPage() {
         })
         .catch((err) => {
           //console.log(err.message);
+          setLoading(false);
+
           alert(err.response.data.message);
         });
     }

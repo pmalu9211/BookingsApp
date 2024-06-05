@@ -28,6 +28,7 @@ const PlacesForm = () => {
     if (!id) {
       return;
     }
+    setLoading(true);
     axios
       .get(`place/place/${id}`)
       .then((data) => {
@@ -43,8 +44,11 @@ const PlacesForm = () => {
         setMaxGuests(data.data.maxGuests);
         setPrice(data.data.price);
         // setPlaceData(data.data.document);
+        setLoading(false);
       })
       .catch((err) => {
+        setLoading(false);
+
         //console.log(err.message);
         alert(err.response.data.message);
       });
@@ -63,6 +67,7 @@ const PlacesForm = () => {
       });
       setLoading(false);
     } catch (err) {
+      setLoading(false);
       //console.log(err.message);
       alert(err.response.data.message);
     }
@@ -86,6 +91,7 @@ const PlacesForm = () => {
       });
       setLoading(false);
     } catch (err) {
+      setLoading(false);
       //console.log(err.message);
       alert(err.response.data.message);
     }
@@ -115,6 +121,8 @@ const PlacesForm = () => {
         setRedirect("/account/places");
         //console.log(response);
       } catch (err) {
+        setLoading(false);
+
         //console.log(err);
         //console.log(err.message);
         alert(err.response.data.message);
@@ -140,6 +148,8 @@ const PlacesForm = () => {
 
         //console.log(response);
       } catch (err) {
+        setLoading(false);
+
         //console.log(err);
         //console.log(err.message);
         alert(err.response.data.message);
@@ -153,7 +163,7 @@ const PlacesForm = () => {
 
   return (
     <>
-      (
+      {loading && <LoadingOverlay />}(
       <div className="m-8">
         <form>
           <h2 className="text-2xl">Title *</h2>

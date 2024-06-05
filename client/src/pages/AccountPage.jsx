@@ -4,9 +4,11 @@ import { useContext } from "react";
 import axios from "axios";
 import PlacesPage from "./PlacesPage";
 import ProfileNav from "../components/ProfileNav";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 export default function AccountPage() {
-  const { user, fetched, setUser } = useContext(UserContext);
+  const { user, fetched, setUser, loading, setLoading } =
+    useContext(UserContext);
   const { subpage } = useParams();
   // const activeClick =
   //   "border border-primary-300 rounded-full py-1 px-4 shadow-xl bg-primary text-white inline-flex gap-1";
@@ -16,9 +18,12 @@ export default function AccountPage() {
   const logout = async () => {
     //console.log("here");
     try {
+      setLoading(true);
       await axios.post("/user/logout");
       setUser(null);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       alert(err.response.data.message);
       //console.log(err.message);
     }
@@ -34,6 +39,7 @@ export default function AccountPage() {
 
   return (
     <>
+      {loading && <LoadingOverlay />}
       <ProfileNav />
 
       {subpage === undefined && (
