@@ -49,7 +49,12 @@ const login = async (req, res, next) => {
     console.log("cookie", req.cookies);
     res
       .status(200)
-      .cookie("token", token)
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true, // Set to true if using HTTPS
+        sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
+        domain: "https://bookingsapp.onrender.com", // Set this to your domain
+      })
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {
     next(error);
