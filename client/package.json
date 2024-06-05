@@ -29,6 +29,5 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "vite": "^5.2.0"
-  },
-  "proxy": "https://638a-152-58-21-4.ngrok-free.app"
+  }
 }
