@@ -13,7 +13,11 @@ export function UserContextProvider({ children }) {
   //console.log(location.pathname);
 
   useEffect(() => {
-    if (location.pathname != "/login") {
+    if (
+      location.pathname != "/login" &&
+      location.pathname != "/" &&
+      location.pathname != "/register"
+    ) {
       axios
         .get("/user/profile")
         .then((res) => {

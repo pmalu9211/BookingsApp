@@ -13,7 +13,7 @@ export default function IndexPage() {
     axios
       .get("/place/homePlaces")
       .then((e) => {
-        //console.log(e);
+        console.log(e);
         setData(e.data);
         setLoading(false);
       })
@@ -22,7 +22,7 @@ export default function IndexPage() {
 
         //console.log(e.message);
         console.log(e);
-        alert(e.response.data.message);
+        alert(e.response.data?.message);
       });
   }, []);
 
@@ -30,7 +30,7 @@ export default function IndexPage() {
     <>
       {loading && <LoadingOverlay />}
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mx-12 justify-items-center">
-        {data.map((value, index) => (
+        {data?.map((value, index) => (
           <Link
             key={index}
             to={`/place/${value._id}`}
