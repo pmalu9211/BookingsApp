@@ -55,6 +55,7 @@ const login = async (req, res, next) => {
         sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
         domain: ".onrender.com", // Set this to your domain
       })
+
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {
     next(error);
