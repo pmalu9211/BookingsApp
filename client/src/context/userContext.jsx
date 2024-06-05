@@ -24,6 +24,7 @@ export function UserContextProvider({ children }) {
         .catch((e) => {
           //console.log(e);
           setFetched(true);
+          console.log(e);
           alert(e.response.data.message);
         });
     }

@@ -25,9 +25,20 @@ app.use("/api/v1/place", placeRouter);
 app.use("/api/v1/file", fileRouter);
 app.use("/api/v1/booking", bookingRouter);
 app.use((err, req, res, next) => {
+  const response = {
+    headers: req.headers,
+    query: req.query,
+    params: req.params,
+    user: req.user, // Only include user info if it's safe
+    path: req.path,
+    method: req.method,
+    cookies: req.cookies,
+    signedCookies: req.signedCookies,
+  };
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
   return res.status(errorStatus).json({
+    response: response,
     success: false,
     status: errorStatus,
     message: errorMessage,

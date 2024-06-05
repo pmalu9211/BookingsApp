@@ -21,6 +21,7 @@ export default function IndexPage() {
         setLoading(false);
 
         //console.log(e.message);
+        console.log(e);
         alert(e.response.data.message);
       });
   }, []);
@@ -30,7 +31,11 @@ export default function IndexPage() {
       {loading && <LoadingOverlay />}
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mx-12 justify-items-center">
         {data.map((value, index) => (
-          <Link to={`/place/${value._id}`} className=" h-84 rounded-2xl w-60">
+          <Link
+            key={index}
+            to={`/place/${value._id}`}
+            className=" h-84 rounded-2xl w-60"
+          >
             <img
               src={value.photos[0]}
               alt=""

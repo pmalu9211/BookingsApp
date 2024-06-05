@@ -21,7 +21,7 @@ const register = async (req, res, next) => {
       password: await bcrypt.hash(password, 10),
     });
     if (!user) {
-      throw new Error("Unable to create user", 401);
+      throw new CustomError("Unable to create user", 401);
     }
     res.status(200).json(user);
   } catch (err) {

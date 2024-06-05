@@ -19,6 +19,7 @@ const Place = () => {
       })
       .catch((err) => {
         //console.log(err.message);
+        console.log(err);
         alert(err.response.data.message);
       });
   }, []);

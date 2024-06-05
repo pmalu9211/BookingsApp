@@ -18,6 +18,7 @@ export default function Login() {
       navigate("/");
     } catch (err) {
       //console.log(err);
+      console.log(err);
       alert(err.response.data.message);
     }
   };

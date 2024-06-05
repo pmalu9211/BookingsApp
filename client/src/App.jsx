@@ -10,8 +10,8 @@ import AccountPage from "./pages/AccountPage.jsx";
 import PlacesForm from "./pages/PlacesForm.jsx";
 import Place from "./pages/Place.jsx";
 import BookingsPage from "./pages/BookingsPage.jsx";
-
-axios.defaults.baseURL = "https://bookingsapp.onrender.com/api/v1";
+//http://localhost:4000/api/v1
+axios.defaults.baseURL = "http://localhost:4000/api/v1";
 axios.defaults.withCredentials = true;
 
 function App() {

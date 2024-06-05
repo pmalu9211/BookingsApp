@@ -24,6 +24,7 @@ export default function AccountPage() {
       setLoading(false);
     } catch (err) {
       setLoading(false);
+      console.log(err);
       alert(err.response.data.message);
       //console.log(err.message);
     }

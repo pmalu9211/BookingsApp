@@ -22,6 +22,7 @@ export default function PlacesPage() {
       .catch((err) => {
         setLoading(false);
 
+        console.log(err);
         alert(err.response.data.message);
         //console.log(err.message);
       });
@@ -48,6 +49,7 @@ export default function PlacesPage() {
           //console.log(err.message);
           setLoading(false);
 
+          console.log(err);
           alert(err.response.data.message);
         });
     }

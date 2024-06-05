@@ -27,6 +27,7 @@ export default function BookingsPage() {
           setLoading(false);
 
           //console.log(err.message);
+          console.log(err);
           alert(err.response.data.message);
         });
     }
@@ -44,6 +45,7 @@ export default function BookingsPage() {
       })
       .catch((err) => {
         setLoading(false);
+        console.log(err);
         alert(err.response.data.message);
         //console.log(err);
       });

@@ -50,6 +50,7 @@ const PlacesForm = () => {
         setLoading(false);
 
         //console.log(err.message);
+        console.log(err);
         alert(err.response.data.message);
       });
   }, [id]);
@@ -69,6 +70,7 @@ const PlacesForm = () => {
     } catch (err) {
       setLoading(false);
       //console.log(err.message);
+      console.log(err);
       alert(err.response.data.message);
     }
   }
@@ -93,6 +95,7 @@ const PlacesForm = () => {
     } catch (err) {
       setLoading(false);
       //console.log(err.message);
+      console.log(err);
       alert(err.response.data.message);
     }
     // //console.log(data);
@@ -125,6 +128,7 @@ const PlacesForm = () => {
 
         //console.log(err);
         //console.log(err.message);
+        console.log(err);
         alert(err.response.data.message);
       }
     } else {
@@ -152,6 +156,7 @@ const PlacesForm = () => {
 
         //console.log(err);
         //console.log(err.message);
+        console.log(err);
         alert(err.response.data.message);
       }
     }
