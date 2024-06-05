@@ -4,7 +4,7 @@ try {
   require("dotenv").config();
 
   mongoose.connect(process.env.MONGO_URL).then(() => {
-    app.listen(4000, () => {
+    app.listen(process.env.PORT || 4000, () => {
       console.log("lisining on port no 4000");
     });
   });
