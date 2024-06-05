@@ -11,7 +11,7 @@ import PlacesForm from "./pages/PlacesForm.jsx";
 import Place from "./pages/Place.jsx";
 import BookingsPage from "./pages/BookingsPage.jsx";
 
-axios.defaults.baseURL = "http://localhost:4000/api/v1";
+axios.defaults.baseURL = "https://bookingsapp-1.onrender.com/api/v1";
 axios.defaults.withCredentials = true;
 
 function App() {

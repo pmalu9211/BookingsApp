@@ -9,7 +9,7 @@ const auth = async (req, res, next) => {
 
     console.log(token);
     if (!token) {
-      throw new CustomError("User is not logged in", 400);
+      throw new CustomError("User is not logged in, token not found", 400);
     }
     const decoded = jwt.verify(token, process.env.JWTSECRET);
     console.log(decoded);
@@ -22,6 +22,8 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
+    console.log(err);
+    console.log(err.message);
     next(err);
   }
 };
