@@ -9,11 +9,15 @@ const placeRouter = require("./routes/place.routes.js");
 const fileRouter = require("./routes/file.routes.js");
 const bookingRouter = require("./routes/booking.routes.js");
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: "16kb" })); //we encode the url in a way that we can get information from it like in yt search " " = "+"
+
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend's origin
+    origin: [
+      "http://localhost:5173",
+      "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app",
+    ], // Replace with your frontend's origin
     methods: ["POST", "GET", "PUT"],
     credentials: true, // Allow credentials (cookies, authorization headers)
   })
@@ -22,7 +26,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
