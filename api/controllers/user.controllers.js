@@ -51,9 +51,9 @@ const login = async (req, res, next) => {
       .status(200)
       .cookie("token", token, {
         // httpOnly: true,
-        // secure: true, // Set to true if using HTTPS
+        secure: false, // Set to true if using HTTPS
         sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
-        domain: "localhost", // Set this to your domain
+        domain: "bookingsapp.onrender.com", // Set this to your domain
       })
 
       .json({ data: { name: user.name, email: user.email } });
