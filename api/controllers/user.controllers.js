@@ -50,8 +50,8 @@ const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("token", token, {
-        httpOnly: true,
-        secure: true, // Set to true if using HTTPS
+        // httpOnly: true,
+        // secure: true, // Set to true if using HTTPS
         sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
         domain: "localhost", // Set this to your domain
       })
