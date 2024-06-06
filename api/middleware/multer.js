@@ -1,9 +1,9 @@
 const multer = require("multer");
+const { publicPath } = require("../info");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log(__dirname);
-    cb(null, "D:/Pratham/Coding/Web/Aribnb/api/public");
+    cb(null, publicPath);
   },
   filename: function (req, file, cb) {
     // const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);

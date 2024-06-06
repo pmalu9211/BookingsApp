@@ -25,7 +25,7 @@ const register = async (req, res, next) => {
     }
     res.status(200).json(user);
   } catch (err) {
-    console.log(req);
+    //console.log(req);
     console.log(err);
     next(err);
   }
@@ -50,7 +50,7 @@ const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("token", token, {
-        httpOnly: true,
+        httpOnly: true, //
         secure: true, // Set to true if using HTTPS
         sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
         domain: "bookingsapp.onrender.com", // Set this to your domain
@@ -69,7 +69,7 @@ const getProfile = async (req, res, next) => {
 
     res.status(200).json({ name: user.name, email: user.email });
   } catch (err) {
-    console.log(req);
+    //console.log(req);
     console.log(err);
     next(err);
   }
@@ -79,7 +79,7 @@ const logout = async (req, res, err) => {
   try {
     res.clearCookie("token").status(200).json({ message: "Logged out" });
   } catch (err) {
-    console.log(req);
+    //console.log(req);
     console.log(err);
     next(err);
   }

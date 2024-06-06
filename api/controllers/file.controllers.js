@@ -1,6 +1,7 @@
 const download = require("image-downloader");
 const fs = require("fs");
 const cloudinary = require("../middleware/cloudinary");
+const { publicPath } = require("../info");
 require("dotenv").config();
 
 const uploadByLink = async (req, res, next) => {
@@ -12,21 +13,22 @@ const uploadByLink = async (req, res, next) => {
     const path = Date.now() + ".jpg";
     await download.image({
       url: photoLink,
-      dest: __dirname + "/public" + "/" + path,
+      dest: publicPath + "/" + path,
     });
 
     const uploadResult = await cloudinary.uploader
-      .upload(__dirname + "/public" + "/" + path, {
-        public_id: "place",
+      .upload(publicPath + "/" + path, {
+        public_id: `plac ${Date.now()}`,
       })
       .catch((error) => {
         console.log(error);
       });
+    // console.log(uploadResult);
 
     res.status(200).json({ hello: "nigga", url: uploadResult.url });
   } catch (err) {
     console.log(err);
-    console.log(req);
+    //console.log(req);
     console.log(err);
     next(err);
   }
@@ -50,7 +52,7 @@ const uploadFromDevice = async (req, res, next) => {
     console.log(urls);
     res.status(200).json(urls);
   } catch (err) {
-    console.log(req);
+    //console.log(req);
     console.log(err);
     next(err);
   }
