@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      // "https://bookingsapp.vercel.app",
-      "http://localhost:5173", //production
+      "https://bookingsapp.vercel.app",
+      // "http://localhost:5173", //production
       // "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app",
     ], // Replace with your frontend's origin
     methods: ["POST", "GET", "PUT"],
@@ -32,8 +32,8 @@ app.use(function (req, res, next) {
   //   "Access-Control-Allow-Origin",
   //   "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app"
   // );
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  // res.header("Access-Control-Allow-Origin", "https://bookingsapp.vercel.app");
+  // res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Origin", "https://bookingsapp.vercel.app");
 
   res.header(
     "Access-Control-Allow-Headers",
