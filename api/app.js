@@ -20,25 +20,19 @@ app.use(
       // "http://localhost:5173", //production
       // "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app",
     ], // Replace with your frontend's origin
-    methods: ["POST", "GET", "PUT"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true, // Allow credentials (cookies, authorization headers)
   })
 );
 app.use(express.static(__dirname + "/public"));
 
-app.use(function (req, res, next) {
-  // res.header(
-  //   //production
-  //   "Access-Control-Allow-Origin",
-  //   "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app"
-  // );
-  // res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://bookingsapp.vercel.app");
-
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
 app.use("/api/v1/user", userRouter);

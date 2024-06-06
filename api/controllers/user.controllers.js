@@ -43,38 +43,24 @@ const login = async (req, res, next) => {
       throw new CustomError("Incorrect password", 402);
     }
 
-    const token = await jwt.sign(
+    const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWTSECRET
     );
-    const exptime = 60 * 60 * 1000;
-    console.log("cookie", req.cookies);
-    console.log("token", token);
+    const exptime = 60 * 60 * 1000; // 1 hour
 
     res
       .status(200)
-      .cookie("token1", token, {
-        expire: exptime + Date.now(),
-        maxAge: exptime,
+      .cookie("token", token, {
         httpOnly: true,
-        //
-        // secure: true, // Set to true if using HTTPS
-        // sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
-        domain: "bookingsapp.onrender.com", // Set this to your domain
+        secure: true, // Set to true if using HTTPS
+        sameSite: "None", // For cross-site cookies
+        maxAge: exptime,
+        domain: "bookingsapp.onrender.com", // Your domain here
       })
-      .setHeader(
-        "Set-Cookie",
-        cookie.serialize("token", token, {
-          httpOnly: true,
-          secure: true, // Set to true if using HTTPS
-          maxAge: 60 * 60 * 24 * 7, // 1 week,
-          sameSite: "None", //
-        })
-      )
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {
     next(error);
-    console.log("error", error.message);
   }
 };
 
