@@ -15,9 +15,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://bookingsapp.vercel.app",
+      // "https://bookingsapp.vercel.app",
       "http://localhost:5173", //production
-      "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app",
+      // "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app",
     ], // Replace with your frontend's origin
     methods: ["POST", "GET", "PUT"],
     credentials: true, // Allow credentials (cookies, authorization headers)
@@ -27,13 +27,13 @@ app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
 
 app.use(function (req, res, next) {
-  res.header(
-    //production
-    "Access-Control-Allow-Origin",
-    "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app"
-  );
+  // res.header(
+  //   //production
+  //   "Access-Control-Allow-Origin",
+  //   "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app"
+  // );
   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.header("Access-Control-Allow-Origin", "https://bookingsapp.vercel.app");
+  // res.header("Access-Control-Allow-Origin", "https://bookingsapp.vercel.app");
 
   res.header(
     "Access-Control-Allow-Headers",
@@ -55,6 +55,7 @@ app.use((err, req, res, next) => {
     method: req.method,
     cookies: req.cookies,
     signedCookies: req.signedCookies,
+    cookie: req.cookie,
   };
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";

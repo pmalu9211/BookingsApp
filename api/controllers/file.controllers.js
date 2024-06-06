@@ -25,6 +25,15 @@ const uploadByLink = async (req, res, next) => {
       });
     // console.log(uploadResult);
 
+    if (uploadResult) {
+      fs.unlink(`${publicPath + "/" + path}`, (err) => {
+        if (err) {
+          console.error(`Error removing file: ${err}`);
+          throw new CustomError("Unable to remove file", 300);
+        }
+      });
+    }
+
     res.status(200).json({ hello: "nigga", url: uploadResult.url });
   } catch (err) {
     console.log(err);
