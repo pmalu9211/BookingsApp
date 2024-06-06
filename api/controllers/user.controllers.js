@@ -52,11 +52,12 @@ const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("token", token, {
+        maxAge: 3600 * 1000, // 1 hour
         httpOnly: true,
-        secure: true, // Set to true if using HTTPS
-        sameSite: "None", // For cross-site cookies
-        maxAge: exptime,
-        domain: "bookingsapp.onrender.com", // Your domain here
+        secure: true,
+        sameSite: "None",
+        domain: "bookingsapp.onrender.com",
+        path: "/",
       })
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {

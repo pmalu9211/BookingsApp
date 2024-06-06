@@ -12,18 +12,15 @@ const bookingRouter = require("./routes/booking.routes.js");
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "16kb" })); //we encode the url in a way that we can get information from it like in yt search " " = "+"
 
+const corsOptions = {
+  origin: "https://bookingsapp.vercel.app",
+  credentials: true, // This allows cookies to be sent and received
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
+};
+
 app.use(express.json());
-app.use(
-  cors({
-    origin: [
-      "https://bookingsapp.vercel.app",
-      // "http://localhost:5173", //production
-      // "https://bookingsapp-1gasb0t9x-pmalu9211s-projects.vercel.app",
-    ], // Replace with your frontend's origin
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true, // Allow credentials (cookies, authorization headers)
-  })
-);
+app.use(cors(corsOptions));
 app.use(express.static(__dirname + "/public"));
 
 app.use((req, res, next) => {
