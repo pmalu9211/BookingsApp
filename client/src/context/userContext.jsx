@@ -11,11 +11,7 @@ export function UserContextProvider({ children }) {
   const width = useWindowWidth();
 
   useEffect(() => {
-    if (
-      location.pathname != "/login" &&
-      location.pathname != "/" &&
-      location.pathname != "/register"
-    ) {
+    if (location.pathname != "/login" && location.pathname != "/register") {
       setLoading(true);
       axios
         .get("/user/profile")

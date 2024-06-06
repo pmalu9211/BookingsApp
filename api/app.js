@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" })); //we encode the 
 
 const corsOptions = {
   origin: "https://bookingsapp.vercel.app",
+  // origin: "http://localhost:5173",
   credentials: true, // This allows cookies to be sent and received
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
