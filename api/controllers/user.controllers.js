@@ -53,9 +53,9 @@ const login = async (req, res, next) => {
         // expire:  + Date.now(),
         maxAge: 60000,
         // httpOnly: true, //
-        secure: true, // Set to true if using HTTPS
-        sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
-        domain: "bookingsapp.onrender.com", // Set this to your domain
+        // secure: true, // Set to true if using HTTPS
+        // sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
+        // domain: "bookingsapp.onrender.com", // Set this to your domain
       })
 
       .json({ data: { name: user.name, email: user.email } });
