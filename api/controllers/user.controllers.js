@@ -52,7 +52,7 @@ const login = async (req, res, next) => {
 
     res
       .status(200)
-      .cookie("token", token, {
+      .cookie("token1", token, {
         expire: exptime + Date.now(),
         maxAge: exptime,
         httpOnly: true,
@@ -63,14 +63,10 @@ const login = async (req, res, next) => {
       })
       .setHeader(
         "Set-Cookie",
-        cookie.serialize(
-          "name",
-          {},
-          {
-            httpOnly: true,
-            maxAge: 60 * 60 * 24 * 7, // 1 week
-          }
-        )
+        cookie.serialize("token", token, {
+          httpOnly: true,
+          maxAge: 60 * 60 * 24 * 7, // 1 week
+        })
       )
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {
