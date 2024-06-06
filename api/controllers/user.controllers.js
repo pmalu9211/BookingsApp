@@ -59,14 +59,18 @@ const login = async (req, res, next) => {
         //
         // secure: true, // Set to true if using HTTPS
         // sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
-        // domain: "bookingsapp.onrender.com", // Set this to your domain
+        domain: "bookingsapp.onrender.com", // Set this to your domain
       })
       .setHeader(
         "Set-Cookie",
-        cookie.serialize("name", String(query.name), {
-          httpOnly: true,
-          maxAge: 60 * 60 * 24 * 7, // 1 week
-        })
+        cookie.serialize(
+          "name",
+          {},
+          {
+            httpOnly: true,
+            maxAge: 60 * 60 * 24 * 7, // 1 week
+          }
+        )
       )
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {
