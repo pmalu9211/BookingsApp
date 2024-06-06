@@ -9,6 +9,7 @@ const placeRouter = require("./routes/place.routes.js");
 const fileRouter = require("./routes/file.routes.js");
 const bookingRouter = require("./routes/booking.routes.js");
 
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "16kb" })); //we encode the url in a way that we can get information from it like in yt search " " = "+"
 
 app.use(express.json());
@@ -24,7 +25,6 @@ app.use(
   })
 );
 app.use(express.static(__dirname + "/public"));
-app.use(cookieParser());
 
 app.use(function (req, res, next) {
   // res.header(

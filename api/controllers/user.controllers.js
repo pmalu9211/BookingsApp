@@ -66,7 +66,9 @@ const login = async (req, res, next) => {
         "Set-Cookie",
         cookie.serialize("token", token, {
           httpOnly: true,
-          maxAge: 60 * 60 * 24 * 7, // 1 week
+          secure: true, // Set to true if using HTTPS
+          maxAge: 60 * 60 * 24 * 7, // 1 week,
+          sameSite: "None", //
         })
       )
       .json({ data: { name: user.name, email: user.email } });
