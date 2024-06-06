@@ -2,6 +2,7 @@ const UserModule = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const CustomError = require("../util/errorHandler");
+var cookie = require("cookie");
 
 const register = async (req, res, next) => {
   try {
@@ -46,18 +47,27 @@ const login = async (req, res, next) => {
       { id: user._id, email: user.email },
       process.env.JWTSECRET
     );
+    const exptime = 60 * 60 * 1000;
     console.log("cookie", req.cookies);
+
     res
       .status(200)
       .cookie("token", token, {
-        // expire:  + Date.now(),
-        maxAge: 60000,
-        // httpOnly: true, //
+        expire: exptime + Date.now(),
+        maxAge: exptime,
+        httpOnly: true,
+        //
         // secure: true, // Set to true if using HTTPS
         // sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement
         // domain: "bookingsapp.onrender.com", // Set this to your domain
       })
-
+      .setHeader(
+        "Set-Cookie",
+        cookie.serialize("name", String(query.name), {
+          httpOnly: true,
+          maxAge: 60 * 60 * 24 * 7, // 1 week
+        })
+      )
       .json({ data: { name: user.name, email: user.email } });
   } catch (error) {
     next(error);
