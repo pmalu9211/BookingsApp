@@ -1,16 +1,14 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import { useWindowWidth } from "@react-hook/window-size";
 export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-
-  //console.log(location.pathname);
+  const width = useWindowWidth();
 
   useEffect(() => {
     if (
@@ -18,16 +16,18 @@ export function UserContextProvider({ children }) {
       location.pathname != "/" &&
       location.pathname != "/register"
     ) {
+      setLoading(true);
       axios
         .get("/user/profile")
         .then((res) => {
           //console.log(res);
           setUser(res.data);
-          setFetched(true);
+          setLoading(false);
         })
         .catch((e) => {
           //console.log(e);
-          setFetched(true);
+          // setFetched(true);
+          setLoading(false);
           console.log(e);
           alert(e.response.data.message);
         });
@@ -35,9 +35,7 @@ export function UserContextProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider
-      value={{ user, setUser, fetched, loading, setLoading }}
-    >
+    <UserContext.Provider value={{ user, setUser, loading, setLoading, width }}>
       {children}
     </UserContext.Provider>
   );

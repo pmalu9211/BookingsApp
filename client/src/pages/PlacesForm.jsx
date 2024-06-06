@@ -168,7 +168,7 @@ const PlacesForm = () => {
 
   return (
     <>
-      {loading && <LoadingOverlay />}(
+      {loading && <LoadingOverlay />}
       <div className="m-8">
         <form>
           <h2 className="text-2xl">Title *</h2>
@@ -258,7 +258,6 @@ const PlacesForm = () => {
           </button>
         </form>
       </div>
-      )
     </>
   );
 };

@@ -8,7 +8,7 @@ const Place = () => {
   //generate code to show places accoriding to the id query in the url
   const { id } = useParams();
   //console.log(id);
-  const { loading } = useContext(UserContext);
+  const { loading, setLoading, width } = useContext(UserContext);
   const [placeData, setPlaceData] = useState({});
   useEffect(() => {
     axios
@@ -24,13 +24,23 @@ const Place = () => {
       });
   }, []);
 
+  let classname = "";
+
+  if (width >= 600) {
+    classname = "mr-44";
+  }
+
   const [morePhotos, setMorePhotos] = useState(false);
 
   if (morePhotos) {
     return (
       <>
-        <div className="bg-black text-white absolute w-full">
-          <h2 className=" ml-14 mt-4 font-semibold text-3xl">
+        <div className={`bg-black text-white absolute w-full `}>
+          <h2
+            className={`ml-14 mt-4 font-semibold text-3xl ${
+              width >= 600 ? "mr-44" : "mr-10"
+            } `}
+          >
             {placeData.title}
           </h2>
           {placeData.photos.map((photo, index) => (
@@ -41,12 +51,21 @@ const Place = () => {
               className="my-5 w-10/12 mx-auto rounded-lg "
             ></img>
           ))}
-          <div
-            onClick={() => setMorePhotos(false)}
-            className=" fixed top-8 right-8 bg-white text-black font-bold px-4 py-2 rounded-lg cursor-pointer text-2xl"
-          >
-            Show Less
-          </div>
+          {width >= 600 ? (
+            <div
+              onClick={() => setMorePhotos(false)}
+              className=" fixed top-8 right-8 bg-white text-black font-bold px-4 py-2 rounded-lg cursor-pointer text-2xl"
+            >
+              Show Less
+            </div>
+          ) : (
+            <div
+              onClick={() => setMorePhotos(false)}
+              className=" fixed top-6 right-2 bg-white text-black font-bold px-4 py-1 rounded-lg cursor-pointer text-xl"
+            >
+              X
+            </div>
+          )}
         </div>
       </>
     );

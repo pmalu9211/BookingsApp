@@ -50,6 +50,7 @@ const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("token", token, {
+        expire: 36000000 + Date.now(),
         httpOnly: true, //
         secure: true, // Set to true if using HTTPS
         sameSite: "None", // Use 'Lax' or 'Strict' as per your requirement

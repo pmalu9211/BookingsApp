@@ -11,7 +11,7 @@ export default function BookingWidget({ place }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [redirect, setRedirect] = useState("");
-  const { user } = useContext(UserContext);
+  const { user, width } = useContext(UserContext);
 
   useEffect(() => {
     if (user) {
@@ -57,21 +57,28 @@ export default function BookingWidget({ place }) {
         Price: ${place.price} / per night
       </div>
       <div className="border rounded-2xl mt-4">
-        <div className="flex">
-          <div className="py-3 px-4">
+        <div
+          className={`${width > 430 ? "flex" : "block-flex"} justify-center`}
+        >
+          {/* block- */}
+          <div className={`py-3 px-4 `}>
             <label>Check in:</label>
             <input
               type="date"
               value={checkIn}
               onChange={(ev) => setCheckIn(ev.target.value)}
+              className={`${width < 430 ? "block" : ""}`}
             />
           </div>
-          <div className="py-3 px-4 border-l">
+          <div
+            className={`py-3 px-4  ${width < 430 ? "border-t" : "border-l"}`}
+          >
             <label>Check out:</label>
             <input
               type="date"
               value={checkOut}
               onChange={(ev) => setCheckOut(ev.target.value)}
+              className={`${width < 430 ? "block" : ""}`}
             />
           </div>
         </div>

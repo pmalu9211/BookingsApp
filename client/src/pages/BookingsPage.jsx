@@ -60,7 +60,7 @@ export default function BookingsPage() {
             <Link
               key={booking._id}
               to={`http://localhost:5173/place/${booking?.place?._id}`}
-              className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden mb-4 mx-4 pt-2 pl-2 relative"
+              className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden mb-4 mx-4 pt-2 pl-2 relative content-center flex-wrap align-middle justify-center"
             >
               <div
                 className="absolute top-0 right-0 cursor-pointer px-2 py-2 rounded-xl my-2 mx-2 bg-gray-500 bg-opacity-70 "

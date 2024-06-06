@@ -93,12 +93,12 @@ export default function PlacesPage() {
             </div>
             <div className="shrink-1 grow-1 ">
               <h2>{data.title}</h2>
-              <div>{data.description}</div>
+              <div className=" truncate w-40">{data.description}</div>
             </div>
           </Link>
         ))}
       {action !== "new" && (
-        <div className="text-center mt-10">
+        <div className="text-center mt-10 mb-5 ">
           <Link
             to={"/account/places/new"}
             className="border border-primary-300 rounded-full py-1 px-4  bg-primary text-white inline-flex gap-1 max-w-44 "
@@ -119,7 +119,7 @@ export default function PlacesPage() {
             </svg>
             Add new place
           </Link>
-          <div>Bookings here</div>
+          <div className="mb-10">Bookings here</div>
         </div>
       )}
     </>

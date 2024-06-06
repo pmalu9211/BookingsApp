@@ -7,8 +7,7 @@ import ProfileNav from "../components/ProfileNav";
 import LoadingOverlay from "../components/LoadingOverlay";
 
 export default function AccountPage() {
-  const { user, fetched, setUser, loading, setLoading } =
-    useContext(UserContext);
+  const { user, setUser, loading, setLoading } = useContext(UserContext);
   const { subpage } = useParams();
   // const activeClick =
   //   "border border-primary-300 rounded-full py-1 px-4 shadow-xl bg-primary text-white inline-flex gap-1";
@@ -30,11 +29,11 @@ export default function AccountPage() {
     }
   };
 
-  if (!fetched && !user) {
+  if (loading && !user) {
     return <div>Loading....</div>;
   }
 
-  if (!user && fetched) {
+  if (!user && !loading) {
     return <Navigate to={"/login"}></Navigate>;
   }
 

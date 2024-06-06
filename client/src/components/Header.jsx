@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 
 const Header = () => {
-  const { user } = useContext(UserContext);
+  const { user, width } = useContext(UserContext);
+
   return (
     <>
       <header className="flex justify-between items-center p-4">
@@ -25,11 +26,15 @@ const Header = () => {
           <span className="font-bold text-xl">airbnb</span>
         </a>
         <div className="flex gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-md">
-          <div>Anywhere</div>
-          <div className="border-l border-gray-300"></div>
-          <div>Any week</div>
-          <div className="border-l border-gray-300"></div>
-          <div>Add guest</div>
+          {width > 600 && (
+            <>
+              <div>Anywhere</div>
+              <div className="border-l border-gray-300"></div>
+              <div>Any week</div>
+              <div className="border-l border-gray-300"></div>
+              <div>Add guest</div>
+            </>
+          )}
           <button className="bg-primary rounded-full p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
