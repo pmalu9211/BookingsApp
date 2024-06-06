@@ -49,6 +49,7 @@ const login = async (req, res, next) => {
     );
     const exptime = 60 * 60 * 1000;
     console.log("cookie", req.cookies);
+    console.log("token", token);
 
     res
       .status(200)

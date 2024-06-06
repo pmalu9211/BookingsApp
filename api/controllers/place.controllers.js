@@ -6,7 +6,7 @@ const CustomError = require("../util/errorHandler.js");
 const uploadPlace = async (req, res, next) => {
   try {
     const user = req.user;
-    console.log("Hello///////", user);
+    // console.log("Hello///////", user);
     const {
       title,
       address,
@@ -117,7 +117,7 @@ const updatePlace = async (req, res, next) => {
       },
       { new: true }
     );
-    console.log(document);
+    // console.log(document);
     res.status(200).json(document);
   } catch (err) {
     //console.log(req);

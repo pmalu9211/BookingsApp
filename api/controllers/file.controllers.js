@@ -45,7 +45,7 @@ const uploadByLink = async (req, res, next) => {
 
 const uploadFromDevice = async (req, res, next) => {
   try {
-    console.log(req.files);
+    // console.log(req.files);
     let urls = [];
     for (let i = 0; i < req.files.length; i++) {
       const { url } = await cloudinary.uploader.upload(req.files[i].path);
@@ -58,7 +58,7 @@ const uploadFromDevice = async (req, res, next) => {
       });
       urls = [...urls, url];
     }
-    console.log(urls);
+    // console.log(urls);
     res.status(200).json(urls);
   } catch (err) {
     //console.log(req);

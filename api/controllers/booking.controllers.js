@@ -6,7 +6,6 @@ const CustomError = require("../util/errorHandler");
 uploadBooking = async (req, res, next) => {
   try {
     const info = req.user;
-    console.log(__dirname, info);
     const { checkIn, checkOut, numberOfGuests, name, phone, place, price } =
       req.body;
     const document = await BookingModule.create({
@@ -22,7 +21,6 @@ uploadBooking = async (req, res, next) => {
 
     if (!document) throw new CustomError("Unable to upload booking", 400);
 
-    console.log(document);
     res.status(200).json(document);
   } catch (err) {
     //console.log(req);
@@ -34,12 +32,10 @@ uploadBooking = async (req, res, next) => {
 getBookings = async (req, res) => {
   try {
     const info = req.user;
-    console.log(__dirname, info);
 
     const document = await BookingModule.find({
       user: new mongoose.Types.ObjectId(info.id),
     }).populate("place");
-    console.log(document);
     res.status(200).json(document);
   } catch (err) {
     //console.log(req);
