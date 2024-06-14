@@ -22,7 +22,11 @@ export default function IndexPage() {
 
         //console.log(e.message);
         console.log(e);
-        alert(e.response.data?.message);
+        if (
+          e.response.data?.message != "User is not logged in, token not found"
+        ) {
+          alert(e.response.data?.message);
+        }
       });
   }, []);
 

@@ -2,28 +2,32 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/userContext.jsx";
+import LoadingOverlay from "../components/LoadingOverlay.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { setUser, loading, setLoading } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.post("user/login", { email, password });
+      setLoading(false);
       alert("Logged in successfully");
       setUser(response.data.data);
       navigate("/");
     } catch (err) {
-      //console.log(err);
+      setLoading(false);
       console.log(err);
       alert(err.response.data.message);
     }
   };
   return (
     <>
+      {loading && <LoadingOverlay />}
       <div className="p-4 justify-center flex flex-col flex-grow">
         <div className="mb-60">
           <h1 className="text-2xl text-center">Login</h1>

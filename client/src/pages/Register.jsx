@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -10,14 +11,17 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.post("/user/register", {
         name,
         email,
         password,
       });
+      setLoading(false);
       alert("registered successfully");
       //console.log(response);
     } catch (err) {
+      setLoading(false);
       console.log(err);
       alert(err.response.data.message);
       //console.log(err);
@@ -30,6 +34,7 @@ export default function Register() {
 
   return (
     <>
+      {loading && <LoadingOverlay />}
       <div className="p-4 justify-center flex flex-col flex-grow">
         <div className="mb-60">
           <h1 className="text-2xl text-center">Register</h1>

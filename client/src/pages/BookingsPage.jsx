@@ -59,7 +59,7 @@ export default function BookingsPage() {
           bookings.map((booking) => (
             <Link
               key={booking._id}
-              to={`http://localhost:5173/place/${booking?.place?._id}`}
+              to={`https://bookingsapp.vercel.app/place/${booking?.place?._id}`}
               className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden mb-4 mx-4 pt-2 pl-2 relative content-center flex-wrap align-middle justify-center"
             >
               <div
