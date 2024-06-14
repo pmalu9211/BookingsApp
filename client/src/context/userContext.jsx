@@ -22,10 +22,18 @@ export function UserContextProvider({ children }) {
         })
         .catch((e) => {
           //console.log(e);
-          // setFetched(true);
           setLoading(false);
+          if (location.pathname == "/") {
+            if (
+              e.response.data?.message !=
+              "User is not logged in, token not found"
+            ) {
+              alert(e.response.data?.message);
+            }
+          } else {
+            alert(e.response.data.message);
+          }
           console.log(e);
-          alert(e.response.data.message);
         });
     }
   }, []);
