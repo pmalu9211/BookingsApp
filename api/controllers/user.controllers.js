@@ -52,11 +52,11 @@ const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("token", token, {
-        maxAge: 3600 * 1000, // 1 hour
+        maxAge: 3600 * 100000, // 100 hour
         httpOnly: true,
         secure: true,
         sameSite: "None",
-        domain: "bookingsapp.onrender.com",
+        domain: "prathamalu.xyz",
         path: "/",
       })
       .json({ data: { name: user.name, email: user.email } });
