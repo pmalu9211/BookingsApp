@@ -9,6 +9,19 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, loading, setLoading } = useContext(UserContext);
+  const [isValid, setIsValid] = useState(false);
+
+  const validateEmail = (email) => {
+    // Regular expression for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleInputChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setIsValid(validateEmail(newEmail));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +49,7 @@ export default function Login() {
               value={email}
               type="email"
               placeholder="your email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInputChange}
             />
             <input
               value={password}
@@ -44,7 +57,12 @@ export default function Login() {
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="submit" type="submit" onClick={handleSubmit}>
+            <button
+              disabled={!isValid}
+              className={`submit ${isValid ? "bg-primary" : "bg-slate-600"}`}
+              type="submit"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </form>

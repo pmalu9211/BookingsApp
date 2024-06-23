@@ -107,7 +107,14 @@ export default function BookingWidget({ place }) {
           </div>
         )}
       </div>
-      <button onClick={bookThisPlace} className="submit mt-4">
+      <button
+        disabled={!(numberOfNights > 0)}
+        onClick={bookThisPlace}
+        // className={`${width < 430 ? "block" : ""}`}
+        className={` submit mt-4 ${
+          numberOfNights <= 0 ? "bg-gray-400" : "bg-primary"
+        }`}
+      >
         Book this place
         {numberOfNights > 0 && <span> ${numberOfNights * place.price}</span>}
       </button>

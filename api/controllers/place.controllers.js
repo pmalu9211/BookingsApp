@@ -4,6 +4,8 @@ const { default: mongoose } = require("mongoose");
 const CustomError = require("../util/errorHandler.js");
 
 const uploadPlace = async (req, res, next) => {
+  console.log("ok");
+
   try {
     const user = req.user;
     // console.log("Hello///////", user);
@@ -19,6 +21,7 @@ const uploadPlace = async (req, res, next) => {
       maxGuests,
       price,
     } = req.body;
+    console.log("ok");
 
     if (
       !title ||
@@ -35,6 +38,7 @@ const uploadPlace = async (req, res, next) => {
       );
     }
 
+    console.log("ok");
     const document = await PlaceModule.create({
       owner: new mongoose.Types.ObjectId(user.id),
       title,
